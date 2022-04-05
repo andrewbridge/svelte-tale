@@ -41,6 +41,60 @@
     const pathRoot = $page.url.pathname.replace(active, '');
 </script>
 
+<style>
+    :global(*) {
+        margin: 0;
+        padding: 0;
+    }
+
+    :global(html, body) {
+        font-family: 'Avenir Next', 'Segoe UI', sans-serif;
+        color: rgb(46,46,59);
+        margin: 0 !important; /* Counteract any global styles applied by story components */
+    }
+
+    .storybook-wrapper {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    nav {
+        width: 20%;
+        padding: 20px;
+        max-width: 200px;
+        background: #F3F5F7;;
+    }
+
+    nav a {
+        background: none;
+        border: none;
+        border-radius: 3px;
+        padding: 5px;
+        width: 100%;
+        font-weight: 600;
+        display: block;
+        color: inherit;
+        text-decoration: none;
+    }
+
+    nav a:hover {
+        background-color: #b7c2cca2;
+    }
+
+    nav a.active {
+        background-color: #B7C2CC;
+    }
+
+    nav ul {
+        list-style: none;
+    }
+
+    .stories {
+        flex-grow: 1;
+        padding: 20px 10%;
+    }
+</style>
+
 <div class="storybook-wrapper is-storybook">
     <nav>
         <ul>
