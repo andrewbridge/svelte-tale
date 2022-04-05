@@ -6,7 +6,12 @@
         title: 'Button',
         component: Button,
         argTypes: {
-            text: { control: 'text', default: 'Button text' }
+            text: {
+                name: 'Button label',
+                description: 'The text shown within the button.',
+                control: 'text',
+                default: 'Button text',
+            }
         }
     };
 </script>

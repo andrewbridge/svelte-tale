@@ -65,6 +65,12 @@
     button {
         float: right;
     }
+    
+    code {
+        background-color: #e6e6e6;
+        padding: 2px 3px;
+        border-radius: 3px;
+    }
 </style>
 
 <div>
@@ -84,7 +90,12 @@
         <tbody>
             {#each Object.entries(context.argTypes) as [key, arg]}
             <tr>
-                <td><label for={key}>{arg.name || key}</label></td>
+                <td><label for={key}>
+                    {#if arg.name}
+                        {arg.name} (<code>{key}</code>)
+                    {:else}
+                        <code>{key}</code>
+                    {/if}</label></td>
                 <td>{arg.description || ''}</td>
                 <td>{arg.default || '-'}</td>
                 <td><input name="{key}" bind:value={customValues[key]} /></td>
