@@ -1,6 +1,5 @@
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
-    import { page } from '$app/stores';
     import type { StoryModule, StoryModules } from 'src/app';
     import { configToPath, toPath } from './stories';
     export let modules: StoryModules = {}, active = '', pathRoot = '/';
@@ -15,12 +14,14 @@
         activeComponent: StoryModule,
         noActive = false,
         defaultComponent: StoryModule,
+        title: string,
         menu: { [groupName: string]: MenuGroup };
     $: {
         modulesIterator = Object.values(modules);
         activeComponent = modulesIterator.find((module) => configToPath(module.StoryConfig) === active);
         noActive = typeof activeComponent === 'undefined';
         defaultComponent = modulesIterator.find((module) => module.StoryConfig.isStorybookDefault === true);
+        title = activeComponent?.StoryConfig?.title || defaultComponent?.StoryConfig.title || 'Sorry, that component doesn\'t exist';
 
         menu = {};
         for (const module of Object.values(modules)) {
@@ -103,6 +104,10 @@
     }
 </style>
 
+<svelte:head>
+    <title>{title}</title>
+</svelte:head>
+
 <div class="storybook-wrapper is-storybook">
     <nav>
         <ul>
@@ -120,11 +125,9 @@
         </ul>
     </nav>
     <div class="stories">
-        {#each Object.values(modules) as module}
-            {#if configToPath(module.StoryConfig) === active}
-                <svelte:component this={module.default} />
-            {/if}
-        {/each}
+        {#if activeComponent}
+            <svelte:component this={activeComponent.default} />
+        {/if}
         {#if noActive && typeof defaultComponent === 'undefined'}
             Sorry, that component doesn't exist
         {:else if noActive}
