@@ -23,13 +23,13 @@ type ArgType = {
 }
 type ArgTypes = { [typeName: string]: ArgType };
 
-type StoryConfig = {
+type StoryConfiguration = {
 	// The name used in navigation and headings for story documents
 	title: string;
 	// The group used to nest documents in storybook navigation. Default "Components"
 	group?: string;
 	// The core component used by this story. Allows stories without markup. Optional
-	component?: SvelteComponent;
+	component?: Partial<SvelteComponent>;
 	// The arguments used by the core component. Provides the interactive component controls.
 	argTypes?: ArgTypes;
 	// Defines the given story as the default view to be shown in the interactive interface.
