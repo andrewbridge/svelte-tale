@@ -127,11 +127,10 @@
     <div class="stories">
         {#if activeComponent}
             <svelte:component this={activeComponent.default} />
-        {/if}
-        {#if noActive && typeof defaultComponent === 'undefined'}
-            Sorry, that component doesn't exist
-        {:else if noActive}
+        {:else if noActive && defaultComponent}
             <svelte:component this={defaultComponent.default} />
+        {:else if noActive}
+            Sorry, that component doesn't exist
         {/if}
     </div>
 </div>
