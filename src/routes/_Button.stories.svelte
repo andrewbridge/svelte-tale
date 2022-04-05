@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
     import type { StoryConfiguration } from "src/app";
-    import Button from "./Button.svelte";
+    import Button from "./_Button.svelte";
     
     export const StoryConfig: StoryConfiguration = {
         title: 'Button',
@@ -12,7 +12,10 @@
 </script>
     
 <script >
+    import Meta from "$lib/Meta.svelte";
     import { createStory } from "$lib/stories";
 
     createStory(StoryConfig);
 </script>
+
+<Meta />
