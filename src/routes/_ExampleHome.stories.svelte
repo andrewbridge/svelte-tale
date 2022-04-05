@@ -1,17 +1,17 @@
 <script lang="ts" context="module">
-    import type { StoryConfiguration } from "src/app";
-    
-    export const StoryConfig: StoryConfiguration = {
-        title: 'Svelte Tale',
-        isStorybookDefault: true,
-    };
-</script>
-    
-<script >
-    import Meta from "$lib/Meta.svelte";
-    import { createStory } from "$lib/stories";
+	import type { StoryConfiguration } from 'src/app';
 
-    createStory(StoryConfig);
+	export const StoryConfig: StoryConfiguration = {
+		title: 'Svelte Tale',
+		isStorybookDefault: true
+	};
+</script>
+
+<script>
+	import Meta from '$lib/Meta.svelte';
+	import { createStory } from '$lib/stories';
+
+	createStory(StoryConfig);
 </script>
 
 <Meta />

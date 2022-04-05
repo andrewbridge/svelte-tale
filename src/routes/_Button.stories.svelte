@@ -1,27 +1,27 @@
 <script lang="ts" context="module">
-    import type { StoryConfiguration } from "src/app";
-    import Button from "./_Button.svelte";
-    
-    export const StoryConfig: StoryConfiguration = {
-        title: 'Button',
-        component: Button,
-        argTypes: {
-            text: {
-                name: 'Button label',
-                description: 'The text shown within the button.',
-                control: 'text',
-                default: 'Button text',
-            }
-        }
-    };
-</script>
-    
-<script >
-    import Meta from "$lib/Meta.svelte";
-    import { createStory } from "$lib/stories";
-    import Story from "$lib/Story.svelte";
+	import type { StoryConfiguration } from 'src/app';
+	import Button from './_Button.svelte';
 
-    createStory(StoryConfig);
+	export const StoryConfig: StoryConfiguration = {
+		title: 'Button',
+		component: Button,
+		argTypes: {
+			text: {
+				name: 'Button label',
+				description: 'The text shown within the button.',
+				control: 'text',
+				default: 'Button text'
+			}
+		}
+	};
+</script>
+
+<script>
+	import Meta from '$lib/Meta.svelte';
+	import { createStory } from '$lib/stories';
+	import Story from '$lib/Story.svelte';
+
+	createStory(StoryConfig);
 </script>
 
 <Meta />

@@ -1,6 +1,6 @@
 /// <reference types="@sveltejs/kit" />
 
-import type { SvelteComponent } from "svelte";
+import type { SvelteComponent } from 'svelte';
 
 // See https://kit.svelte.dev/docs/types#the-app-namespace
 // for information about these interfaces
@@ -20,7 +20,7 @@ type ArgType = {
 	description?: string;
 	// A human readable name for the argument
 	name?: string;
-}
+};
 type ArgTypes = { [typeName: string]: ArgType };
 
 interface StoryConfiguration {
@@ -38,8 +38,8 @@ interface StoryConfiguration {
 }
 
 interface ParsedStoryConfiguration extends StoryConfiguration {
-	defaultArgs: { [typeName: string ]: ArgType['default'] }
+	defaultArgs: { [typeName: string]: ArgType['default'] };
 }
 
-type StoryModule = { default: SvelteComponent, StoryConfig: StoryConfiguration};
+type StoryModule = { default: SvelteComponent; StoryConfig: StoryConfiguration };
 type StoryModules = { [moduleName: string]: StoryModule };
