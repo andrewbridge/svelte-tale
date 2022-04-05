@@ -1,17 +1,27 @@
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
     import { page } from '$app/stores';
-    import type { StoryModules } from 'src/app';
+    import type { StoryModule, StoryModules } from 'src/app';
     import { configToPath, toPath } from './stories';
-    export let modules: StoryModules = {}, active = '';
+    export let modules: StoryModules = {}, active = '', pathRoot = '/';
 
     const dispatch = createEventDispatcher();
     const setActive = (path) => dispatch('setActive', { path });
 
     type MenuItem = { title: string, group: string, path: string };
     type MenuGroup = MenuItem[];
-    let menu: { [groupName: string]: MenuGroup };
+
+    let modulesIterator: StoryModule[],
+        activeComponent: StoryModule,
+        noActive = false,
+        defaultComponent: StoryModule,
+        menu: { [groupName: string]: MenuGroup };
     $: {
+        modulesIterator = Object.values(modules);
+        activeComponent = modulesIterator.find((module) => configToPath(module.StoryConfig) === active);
+        noActive = typeof activeComponent === 'undefined';
+        defaultComponent = modulesIterator.find((module) => module.StoryConfig.isStorybookDefault === true);
+
         menu = {};
         for (const module of Object.values(modules)) {
             const group = module.StoryConfig.group || 'Components';
@@ -20,7 +30,6 @@
                 menu[group] = [];
             }
             if (module.StoryConfig.isStorybookDefault === true) continue;
-            console.log(module.StoryConfig);
             menu[group].push({ title, group, path: toPath(title, group) });
         }
         Object.values(menu).forEach((menuGroup) => menuGroup.sort((a, b) => {
@@ -34,11 +43,6 @@
                 return 1;
         }));
     }
-    let noActive = false;
-    $: noActive = typeof Object.values(modules).find((module) => configToPath(module.StoryConfig) === active) === 'undefined';
-    let defaultPage;
-    $: defaultPage = Object.values(modules).find((module) => module.StoryConfig.isStorybookDefault === true);
-    const pathRoot = $page.url.pathname.replace(active, '');
 </script>
 
 <style>
@@ -63,6 +67,10 @@
         padding: 20px;
         max-width: 200px;
         background: #F3F5F7;;
+    }
+
+    nav h3 {
+        padding-top: 20px;
     }
 
     nav a {
@@ -98,8 +106,8 @@
 <div class="storybook-wrapper is-storybook">
     <nav>
         <ul>
-            {#if defaultPage}
-                <li><a href={pathRoot} class:active={noActive} on:click|preventDefault={() => setActive('')}>{defaultPage.StoryConfig.title}</a></li>
+            {#if defaultComponent}
+                <li><a href={pathRoot} class:active={noActive} on:click|preventDefault={() => setActive('')}>{defaultComponent.StoryConfig.title}</a></li>
             {/if}
             {#each Object.entries(menu) as [name, group]}
                 <li><h3>{name}</h3>
@@ -117,10 +125,10 @@
                 <svelte:component this={module.default} />
             {/if}
         {/each}
-        {#if noActive && typeof defaultPage === 'undefined'}
+        {#if noActive && typeof defaultComponent === 'undefined'}
             Sorry, that component doesn't exist
         {:else if noActive}
-            <svelte:component this={defaultPage.default} />
+            <svelte:component this={defaultComponent.default} />
         {/if}
     </div>
 </div>
