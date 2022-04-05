@@ -24,7 +24,7 @@
         title = activeComponent?.StoryConfig?.title || defaultComponent?.StoryConfig.title || 'Sorry, that component doesn\'t exist';
 
         menu = {};
-        for (const module of Object.values(modules)) {
+        for (const module of modulesIterator) {
             const group = module.StoryConfig.group || 'Components';
             const { title } = module.StoryConfig;
             if (!(group in menu)) {
