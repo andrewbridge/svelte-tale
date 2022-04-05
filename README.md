@@ -1,24 +1,12 @@
-# create-svelte
+# Svelte Tale
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+[Storybook](https://storybook.js.org) is a powerful tool for component driven UI development and testing, but it requires a mountain of dependencies and its Svelte integration is still a second class citizen.
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
-```
-
-> Note: the `@next` is temporary
+Svelte Tale reimplements the core features of Storybook for any [SvelteKit](https://kit.svelte.dev/) based project to provide the conveniences of Storybook's component driven workflow and SvelteKit's speed and lightweight developer environment.
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've created a project and installed dependencies with `pnpm install`, start a development server:
 
 ```bash
 npm run dev
