@@ -23,7 +23,7 @@ type ArgType = {
 }
 type ArgTypes = { [typeName: string]: ArgType };
 
-type StoryConfiguration = {
+interface StoryConfiguration {
 	// The name used in navigation and headings for story documents
 	title: string;
 	// The group used to nest documents in storybook navigation. Default "Components"
@@ -35,4 +35,8 @@ type StoryConfiguration = {
 	// Defines the given story as the default view to be shown in the interactive interface.
 	// The first story found to define this as `true` will be used
 	isStorybookDefault?: boolean;
+}
+
+interface ParsedStoryConfiguration extends StoryConfiguration {
+	defaultArgs: { [typeName: string ]: ArgType['default'] }
 }

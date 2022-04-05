@@ -1,4 +1,4 @@
-import type { StoryConfiguration } from "src/app";
+import type { StoryConfiguration, ParsedStoryConfiguration } from "src/app";
 import { getContext, setContext } from "svelte";
 
 const getDefaultArgs = ({ argTypes }: StoryConfiguration) => {
@@ -25,4 +25,4 @@ export const createStory = (options) => {
     setContext(storyContextKey, context);
 }
 
-export const getStoryContext = () => getContext<StoryConfiguration>(storyContextKey);
+export const getStoryContext = () => getContext<ParsedStoryConfiguration>(storyContextKey);
