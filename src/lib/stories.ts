@@ -12,7 +12,10 @@ const getDefaultArgs = ({ argTypes }: StoryConfiguration) => {
     return defaultArgs;
 }
 
-export const toPath = (title) => title.split('/').map(str => (str.toLowerCase().match(/[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g) || []).join('-')).join('/');
+
+export const toUrl = (str) => (str.toLowerCase().match(/[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g) || []).join('-');
+export const toPath = (title, group) => toUrl(group) + '/' + toUrl(title);
+export const configToPath = ({ title, group = 'Components'}) => toPath(title, group);
 
 const storyContextKey = Symbol();
 export const createStory = (options) => {

@@ -40,3 +40,6 @@ interface StoryConfiguration {
 interface ParsedStoryConfiguration extends StoryConfiguration {
 	defaultArgs: { [typeName: string ]: ArgType['default'] }
 }
+
+type StoryModule = { default: SvelteComponent, StoryConfig: StoryConfiguration};
+type StoryModules = { [moduleName: string]: StoryModule };

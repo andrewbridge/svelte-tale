@@ -19,7 +19,7 @@
 <script >
     import Meta from "$lib/Meta.svelte";
     import { createStory } from "$lib/stories";
-import Story from "$lib/Story.svelte";
+    import Story from "$lib/Story.svelte";
 
     createStory(StoryConfig);
 </script>
