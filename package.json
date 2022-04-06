@@ -1,6 +1,7 @@
 {
 	"name": "svelte-tale",
 	"version": "0.0.1",
+	"bin": "./bin/command.js",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
